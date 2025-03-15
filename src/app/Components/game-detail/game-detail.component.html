@@ -1,40 +1,65 @@
-<div class="grid grid-cols-1 md:grid-cols-2 w-full bg-[#1C232F] p-5 gap-6">
-    <div class="text-gray-50">
-      <!-- Title + Rating -->
-      <div class="flex items-center gap-3">
-        <p class="text-3xl md:text-4xl font-bold">The Witcher III</p>
-        <div class=" text-black px-3 py-1 m-5 text-sm font-semibold" style="background-color:  #E8C63A">
-           4.8/5 <i class="fa-regular fa-star mx-1" style="background-color: #E8C63A;"></i>
+<div class="bg-[#1C232F] min-h-screen w-full flex justify-center items-center">
+  <div class="container mx-auto px-4 py-6">
+    <!-- Loading spinner -->
+    <div *ngIf="isLoading" class="flex justify-center p-12">
+      <div class="spinner border-t-4 border-blue-500 border-solid rounded-full w-12 h-12 animate-spin"></div>
+    </div>
+
+    <!-- Error message -->
+    <div *ngIf="error" class="bg-red-100 text-red-700 p-4 rounded text-center">
+      {{ error }}
+    </div>
+
+    <!-- Game detail content -->
+    <div *ngIf="game && !isLoading" class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+      <!-- Game details section -->
+      <div class="text-gray-50">
+        <div class="flex items-center gap-3 mb-4">
+          <h1 class="text-4xl font-bold">{{ game.gameName }}</h1>
+          <div class="text-black px-3 py-1 text-sm font-semibold" style="background-color: #E8C63A">
+            {{ game.rating }}/5 
+            <i class="fa-regular fa-star mx-1" style="background-color: #E8C63A;"></i>
+          </div>
+        </div>
+
+        <div class="mb-6">
+          <h2 class="text-xl font-semibold mb-2 text-blue-400">Description</h2>
+          <p class="text-base">{{ game.description }}</p>
+        </div>
+
+        <div class="mb-6">
+          <h2 class="text-xl font-semibold mb-2 text-blue-400">Tags</h2>
+          <div class="text-blue-400 flex gap-2 flex-wrap">
+            <a *ngFor="let tag of game.tags" href="#" class="hover:text-blue-300 transition">{{ tag }}</a>
+          </div>
+        </div>
+
+        <div class="mb-6">
+          <p class="text-blue-500 hover:text-white cursor-pointer transition">
+            Add to Wishlist <i class="fa-regular fa-heart"></i>
+          </p>
+        </div>
+
+        <div class="flex flex-col md:flex-row gap-4">
+          <button class="w-full md:w-64 h-12 text-white hover:bg-blue-700 transition" 
+                  style="background-color: #3A66E8;"
+                  >
+            <i class="fa-solid fa-cart-shopping" style="background-color: #3A66E8;"></i> Add to cart
+          </button>
+          <a [href]="game.trailer" target="_blank">
+            <button class="w-full md:w-64 h-12 border-2 border-blue-500 text-white hover:bg-blue-500 transition"
+        (click)="openTrailer()">
+  <i class="fa-solid fa-play"></i> Watch Trailer
+</button>
+
+          </a>
         </div>
       </div>
 
-      <p class="mt-4 text-sm md:text-base">
-        The Witcher 3: Wild Hunt is an action role-playing game with a third-person perspective. Players control Geralt of Rivia, a monster slayer known as a Witcher. Geralt walks, runs, rolls and dodges, and (for the first time in the series) jumps, climbs and swims.
-      </p>
-
-      <div class="mt-3 text-blue-400 flex gap-2 flex-wrap">
-        <a href="#" class="hover:text-blue-300 transition">MMORPG</a>
-        <a href="#" class="hover:text-blue-300 transition">Monsters</a>
-        <a href="#" class="hover:text-blue-300 transition">Fiction</a>
+      <!-- Game image -->
+      <div class="flex justify-center items-center">
+        <img [src]="game.gamePoster" [alt]="game.gameName" class="h-auto rounded-lg shadow-lg" style="width: 70%; ; height: 80%;">
       </div>
-
-      <div class="mt-4">
-        <p class="text-blue-500 hover:text-white cursor-pointer transition">
-          Add to Wishlist <i class="fa-regular fa-heart"></i>
-        </p>
-      </div>
-
-      <div class="mt-4 flex flex-col md:flex-row gap-3 mb-5">
-        <button class="w-full md:w-64 h-12 bg-blue-600 text-white hover:bg-blue-700 transition " style="background-color: #3A66E8;">
-          <i class="fa-solid fa-cart-shopping" style="background-color: #3A66E8;"></i> Add to cart
-        </button>
-        <button class="w-full md:w-64 h-12 border-2 border-blue-500 text-white hover:bg-blue-500 transition " >
-          <i class="fa-solid fa-play"></i> Watch Trailer
-        </button>
-      </div>
-    </div>
-
-    <div class="flex justify-center">
-      <img src="../../../../assets/images/witcher.avif" alt="The Witcher III" class="max-w-full h-auto rounded-lg">
     </div>
   </div>
+</div>
