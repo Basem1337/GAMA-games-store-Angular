@@ -1,0 +1,65 @@
+<div class="bg-[#1C232F] min-h-screen w-full flex justify-center items-center">
+  <div class="container mx-auto px-4 py-6">
+    <!-- Loading spinner -->
+    <div *ngIf="isLoading" class="flex justify-center p-12">
+      <div class="spinner border-t-4 border-blue-500 border-solid rounded-full w-12 h-12 animate-spin"></div>
+    </div>
+
+    <!-- Error message -->
+    <div *ngIf="error" class="bg-red-100 text-red-700 p-4 rounded text-center">
+      {{ error }}
+    </div>
+
+    <!-- Game detail content -->
+    <div *ngIf="game && !isLoading" class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+      <!-- Game details section -->
+      <div class="text-gray-50">
+        <div class="flex items-center gap-3 mb-4">
+          <h1 class="text-4xl font-bold">{{ game.gameName }}</h1>
+          <div class="text-black px-3 py-1 text-sm font-semibold" style="background-color: #E8C63A">
+            {{ game.rating }}/5 
+            <i class="fa-regular fa-star mx-1" style="background-color: #E8C63A;"></i>
+          </div>
+        </div>
+
+        <div class="mb-6">
+          <h2 class="text-xl font-semibold mb-2 text-blue-400">Description</h2>
+          <p class="text-base">{{ game.description }}</p>
+        </div>
+
+        <div class="mb-6">
+          <h2 class="text-xl font-semibold mb-2 text-blue-400">Tags</h2>
+          <div class="text-blue-400 flex gap-2 flex-wrap">
+            <a *ngFor="let tag of game.tags" href="#" class="hover:text-blue-300 transition">{{ tag }}</a>
+          </div>
+        </div>
+
+        <div class="mb-6">
+          <p class="text-blue-500 hover:text-white cursor-pointer transition">
+            Add to Wishlist <i class="fa-regular fa-heart"></i>
+          </p>
+        </div>
+
+        <div class="flex flex-col md:flex-row gap-4">
+          <button class="w-full md:w-64 h-12 text-white hover:bg-blue-700 transition" 
+                  style="background-color: #3A66E8;"
+                  >
+            <i class="fa-solid fa-cart-shopping" style="background-color: #3A66E8;"></i> Add to cart
+          </button>
+          <a [href]="game.trailer" target="_blank">
+            <button class="w-full md:w-64 h-12 border-2 border-blue-500 text-white hover:bg-blue-500 transition"
+        (click)="openTrailer()">
+  <i class="fa-solid fa-play"></i> Watch Trailer
+</button>
+
+          </a>
+        </div>
+      </div>
+
+      <!-- Game image -->
+      <div class="flex justify-center items-center">
+        <img [src]="game.gamePoster" [alt]="game.gameName" class="h-auto rounded-lg shadow-lg" style="width: 70%; ; height: 80%;">
+      </div>
+    </div>
+  </div>
+</div>
