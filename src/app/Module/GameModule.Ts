@@ -10,5 +10,6 @@ export interface Game {
   rating: number;
   tags: string[];
   trailer: string;
-  
+  releaseYear:number;
+  discount:number;
   }

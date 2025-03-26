@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import {Game} from '../../Module/GameModule'
-import { HttpClient } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { GameService } from '../../Services/products.service';
 import { ActivatedRoute } from '@angular/router';
@@ -17,11 +16,13 @@ export class GameDetailComponent implements OnInit {
   error: string | null = null;
 
   constructor(
-    private route: ActivatedRoute,
-    private gameService: GameService
+    private readonly route: ActivatedRoute,
+    private readonly gameService: GameService
   ) { }
 
   ngOnInit(): void {
+    console.log(this.game);
+    
     this.route.params.subscribe(params => {
       const gameId = params['id']; 
       this.loadGameDetails(gameId);
@@ -34,6 +35,8 @@ export class GameDetailComponent implements OnInit {
 
     this.gameService.getGameById(gameId).subscribe({
       next: (data) => {
+        console.log(data);
+        
         this.game = data;
         this.isLoading = false;
         console.log(data);
@@ -49,12 +52,12 @@ export class GameDetailComponent implements OnInit {
 
   addToWishlist(gameId: number): void {
     // Implement wishlist functionality
-    event?.stopPropagation(); // Prevent navigation when clicking wishlist button
+    // event?.stopPropagation(); // Prevent navigation when clicking wishlist button
   }
 
   addToCart(gameId: number): void {
     // Implement cart functionality
-    event?.stopPropagation(); // Prevent navigation when clicking cart button
+    // event?.stopPropagation(); // Prevent navigation when clicking cart button
   }
 
   openTrailer():void{
