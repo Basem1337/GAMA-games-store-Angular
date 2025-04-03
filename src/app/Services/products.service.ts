@@ -1,15 +1,39 @@
-import { HttpClient } from '@angular/common/http';
+
+// game.service.ts
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+
+export interface Game {
+  id: string;
+  gameName: string;
+  gamePoster:string;
+  company:string;
+  category:string;
+  description: string;
+  price:number;
+  originalPrice:number;
+  rating: number;
+  tags: string[];
+  trailer: string;
+  releaseYear:number;
+  discount:number;
+  
+}
 
 @Injectable({
   providedIn: 'root'
 })
-export class ProductsService {
-  private apiUrl = 'http://localhost:3000/products';
+export class GameService {
+  private apiUrl = 'http://localhost:3000/products'; 
+
   constructor(private http: HttpClient) { }
 
-  getGames(): Observable<any[]> {
-    return this.http.get<any[]>(this.apiUrl);
-  
-}}
+  getAllGames(): Observable<Game[]> {
+    return this.http.get<Game[]>(`${this.apiUrl}/games`);
+  }
+
+  getGameById(id: number): Observable<Game> {
+    return this.http.get<Game>(`${this.apiUrl}/games/${id}`);
+  }
+}
