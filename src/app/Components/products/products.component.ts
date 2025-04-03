@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ProductsService } from '../../Services/products.service';
+import { GameService } from '../../Services/products.service';
 import { CommonModule } from '@angular/common';
 import { CategoriesService } from '../../Services/categories.service';
 
@@ -21,7 +21,7 @@ export class ProductsComponent implements OnInit {
   itemsPerPage: number = 6;  
   totalPages: number = 1;
 
-  constructor(private productService: ProductsService, private categoryService: CategoriesService) {}
+  constructor(private productService: GameService, private categoryService: CategoriesService) {}
 
   ngOnInit(): void {
     this.loadGames();
@@ -29,7 +29,7 @@ export class ProductsComponent implements OnInit {
   }
 
   loadGames(): void {
-    this.productService.getGames().subscribe((data: any) => {
+    this.productService.getAllGames().subscribe((data: any) => {
       this.games = data;
       this.applyFilters();
     });
