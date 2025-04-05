@@ -8,53 +8,17 @@
             <a href="" class="text-[#3A66E8] font-[ClashGrotesk-Medium]">See More</a>
         </div>
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-            <div class="bg-white w-full h-[360px] relative shadow-lg overflow-hidden">
+            <div *ngFor="let game of games | slice:5:9" class="bg-white w-full h-[360px] relative shadow-lg overflow-hidden">
                 <div class="absolute bottom-0 w-full text-white transition-all duration-300 hover:bg-opacity-80 z-10">
                     <div class="flex justify-between items-center h-[100px] w-full bg-[#1C2027] p-3 font-[ClashGrotesk-Medium] m-0">
                         <div class="flex flex-col">
-                            <h5 class="m-0">The Witcher III</h5>
-                            <p class="text-[#54575D] text-[16px] m-0">CD Projekt Red</p>
+                            <h5 class="m-0">{{game.gameName}}</h5>
+                            <p class="text-[#54575D] text-[16px] m-0">{{game.company}}</p>
                         </div>
                         <div class="text-[#3A66E8] font-[ClashGrotesk-Semibold]"><h1>Free</h1></div>
                     </div>
                 </div>
-                <img class="absolute top-0 left-0 w-full h-full object-cover" src="/images/TheWitcherPoster.png" alt="">
-            </div>
-            <div class="bg-white w-full h-[360px] relative shadow-lg overflow-hidden">
-                <div class="absolute bottom-0 w-full text-white transition-all duration-300 hover:bg-opacity-80 z-10">
-                    <div class="flex justify-between items-center h-[100px] w-full bg-[#1C2027] p-3 font-[ClashGrotesk-Medium] m-0">
-                        <div class="flex flex-col">
-                            <h5 class="m-0">The Witcher III</h5>
-                            <p class="text-[#54575D] text-[16px] m-0">CD Projekt Red</p>
-                        </div>
-                        <div class="text-[#3A66E8] font-[ClashGrotesk-Semibold]"><h1>Free</h1></div>
-                    </div>
-                </div>
-                <img class="absolute top-0 left-0 w-full h-full object-cover" src="/images/TheWitcherPoster.png" alt="">
-            </div>
-            <div class="bg-white w-full h-[360px] relative shadow-lg overflow-hidden">
-                <div class="absolute bottom-0 w-full text-white transition-all duration-300 hover:bg-opacity-80 z-10">
-                    <div class="flex justify-between items-center h-[100px] w-full bg-[#1C2027] p-3 font-[ClashGrotesk-Medium] m-0">
-                        <div class="flex flex-col">
-                            <h5 class="m-0">The Witcher III</h5>
-                            <p class="text-[#54575D] text-[16px] m-0">CD Projekt Red</p>
-                        </div>
-                        <div class="text-[#3A66E8] font-[ClashGrotesk-Semibold]"><h1>Free</h1></div>
-                    </div>
-                </div>
-                <img class="absolute top-0 left-0 w-full h-full object-cover" src="/images/TheWitcherPoster.png" alt="">
-            </div>
-            <div class="bg-white w-full h-[360px] relative shadow-lg overflow-hidden">
-                <div class="absolute bottom-0 w-full text-white transition-all duration-300 hover:bg-opacity-80 z-10">
-                    <div class="flex justify-between items-center h-[100px] w-full bg-[#1C2027] p-3 font-[ClashGrotesk-Medium] m-0">
-                        <div class="flex flex-col">
-                            <h5 class="m-0">The Witcher III</h5>
-                            <p class="text-[#54575D] text-[16px] m-0">CD Projekt Red</p>
-                        </div>
-                        <div class="text-[#3A66E8] font-[ClashGrotesk-Semibold]"><h1>Free</h1></div>
-                    </div>
-                </div>
-                <img class="absolute top-0 left-0 w-full h-full object-cover" src="/images/TheWitcherPoster.png" alt="">
+                <img class="absolute top-0 left-0 w-full h-full object-cover" src="{{game.gamePoster}}" alt="">
             </div>
         </div>
     </div>

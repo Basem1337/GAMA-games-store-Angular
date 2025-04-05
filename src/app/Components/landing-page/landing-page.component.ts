@@ -4,6 +4,7 @@ import { CategoriesComponent } from './categories/categories.component';
 import { FreeGamesComponent } from './free-games/free-games.component';
 import { SalesComponent } from './sales/sales.component';
 import { ArrivalComponent } from './arrival/arrival.component';
+import { GameService } from '../../Services/products.service';
 
 @Component({
   selector: 'app-landing-page',

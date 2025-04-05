@@ -35,7 +35,7 @@ onSubmit(email:string,password:string){
     this.usersService.login({email,password}).subscribe({
       next:res=>{
         localStorage.setItem("token","Bearer "+res)
-        this.Router.navigate(["/"])
+        this.Router.navigate(["/home"])
 
       },
       error:res=>{

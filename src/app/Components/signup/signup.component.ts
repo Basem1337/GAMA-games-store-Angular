@@ -54,7 +54,7 @@ export class SignupComponent {
       this.userService.register(user).subscribe({
         next:res=>{
           console.log(res)
-          this.router.navigate(['/']);
+          this.router.navigate(['/login']);
         },
         error:res=>console.log(res.error)
       });

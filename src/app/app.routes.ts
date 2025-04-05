@@ -1,7 +1,7 @@
 import { Routes } from '@angular/router';
 import { LoginComponent } from './Components/login/login.component';
 import { SignupComponent } from './Components/signup/signup.component';
-import { AboutComponent } from './Components/about/about.component';
+import { AboutPageComponent } from './Components/about/about-page.component';
 import { GameDetailComponent } from './Components/game-detail/game-detail.component';
 import { ErrorPageComponent } from './Components/error-page/error-page.component';
 import { ProfileComponent } from './Components/profile/profile.component';
@@ -16,7 +16,7 @@ export const routes: Routes = [
     {path:'home',component:LandingPageComponent},
     {path:'login',component:LoginComponent},
     {path:'signup',component:SignupComponent},
-    {path:'about',component:AboutComponent},
+    {path:'about',component:AboutPageComponent},
     {path:'games',component:ProductsComponent},
     {path:'games/:id',component:GameDetailComponent},
     {path:'cart',component:CheckOutPageComponent},
