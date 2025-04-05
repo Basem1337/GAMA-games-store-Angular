@@ -18,6 +18,7 @@ import { FreeGamesComponent } from './Components/landing-page/free-games/free-ga
 import { CategoriesComponent } from './Components/landing-page/categories/categories.component';
 import { SignupComponent } from './Components/signup/signup.component';
 import { LoginComponent } from './Components/login/login.component';
+import { LandingPageComponent } from './Components/landing-page/landing-page.component';
 
 @Component({
   selector: 'app-root',
@@ -27,11 +28,8 @@ import { LoginComponent } from './Components/login/login.component';
   
   imports: [HeaderComponent,
     FooterComponent,
-    HeroComponent,
-    ArrivalComponent,
-    SalesComponent,
-    FreeGamesComponent,
-    CategoriesComponent,
+    LandingPageComponent,
+    RouterOutlet,
     SignupComponent,
     LoginComponent],
 })

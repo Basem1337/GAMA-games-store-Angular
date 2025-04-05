@@ -2,22 +2,26 @@ import { Routes } from '@angular/router';
 import { LoginComponent } from './Components/login/login.component';
 import { SignupComponent } from './Components/signup/signup.component';
 import { AboutComponent } from './Components/about/about.component';
-// import { GamesComponent } from './Components/games/games.component';
 import { GameDetailComponent } from './Components/game-detail/game-detail.component';
-import { CartComponent } from './Components/cart/cart.component';
-import { ErrorComponent } from './Components/error/error.component';
+import { ErrorPageComponent } from './Components/error-page/error-page.component';
 import { ProfileComponent } from './Components/profile/profile.component';
 import { ProductsComponent } from './Components/products/products.component';
+import { LandingPageComponent } from './Components/landing-page/landing-page.component';
+import { CheckOutPageComponent } from './Components/check-out-page/check-out-page.component';
+import { ProcessingPageComponent } from './Components/processing-page/processing-page.component';
+import { SuccessPageComponent } from './Components/success-page/success-page.component';
 
 export const routes: Routes = [
     {path:'',component:LoginComponent},
-    // {path:'Home',component:},
+    {path:'home',component:LandingPageComponent},
     {path:'login',component:LoginComponent},
     {path:'signup',component:SignupComponent},
     {path:'about',component:AboutComponent},
     {path:'games',component:ProductsComponent},
     {path:'games/:id',component:GameDetailComponent},
-    {path:'cart',component:CartComponent},
+    {path:'cart',component:CheckOutPageComponent},
     {path:'profile',component:ProfileComponent},
-    {path:'**',component:ErrorComponent}
+    {path:'process',component:ProcessingPageComponent},
+    {path:'success',component:SuccessPageComponent},
+    {path:'**',component:ErrorPageComponent}
 ];
