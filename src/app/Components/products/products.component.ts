@@ -18,7 +18,7 @@ export class ProductsComponent implements OnInit {
 
  
   currentPage: number = 1;
-  itemsPerPage: number = 6;  
+  itemsPerPage: number = 12;  
   totalPages: number = 1;
 
   constructor(private productService: GameService, private categoryService: CategoriesService) {}

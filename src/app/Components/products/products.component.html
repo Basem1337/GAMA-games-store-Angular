@@ -47,23 +47,43 @@
   </div>
 
 
-  <h2 class="text-center mb-4">Games</h2>
-  <div class="row">
-    <div class="col-md-4 mb-4" *ngFor="let game of paginatedGames">
+  <!-- <h2 class="text-center mb-4">Games</h2> -->
+  <div class="row mt-5">
+    <div class="col-md-3 mb-4" *ngFor="let game of paginatedGames">
 
       <div class="card h-100">
         <img [src]="game.gamePoster" class="card-img-top" alt="{{ game.gameName }}">
-        <div class="card-body">
+       <div class="card-body position-relative">
+  <!-- <button *ngIf="game.price === 0" class="btn btn-primary btn-sm free-badge">Free</button> -->
+  <span *ngIf="game.price === 0" class="free-text">Free</span>
+  <button *ngIf="game.discount && game.discount > 0" class="btn btn-primary btn-sm discount-badge">
+    {{ game.discount }}% Off
+  </button>
+
+  <h5 class="card-title mt-3">{{ game.gameName }}</h5>
+
+  
+  <div class="card-text" *ngIf="game.price !== 0">
+
+    <span *ngIf="game.discount && game.discount > 0" class="discounted-price">${{ game.price - (game.price * game.discount / 100) | number: '1.2-2' }}</span>
+    <span *ngIf="!(game.discount && game.discount > 0)" class="current-price">${{ game.price }}</span>
+    <span *ngIf="game.discount && game.discount > 0" class="old-price">${{ game.price }}</span>
+
+  </div>
+</div>
+        
+        <!-- <div class="card-body">
         
           <h5 class="card-title">{{ game.gameName }}</h5>
-          <p class="card-text">{{ game.description }}</p>
-          <p><strong>Price:</strong> {{ game.price === 0 ? 'Free' : '$' + game.price }}</p>
-          <p><strong>Rating:</strong> {{ game.rating }}</p>
-          <p><strong>releaseYear:</strong> {{ game.releaseYear}}</p>
-          <p><strong>Discount:</strong> {{ game.discount}} $ </p>
+          <h5 class="card-text"> {{'$ ' + game.price }}</h5> -->
+          <!-- <p class="card-text">{{ game.description }}</p> -->
+          <!-- <p><strong>Price:</strong> {{ game.price === 0 ? 'Free' : '$' + game.price }}</p> -->
+          <!-- <p><strong>Rating:</strong> {{ game.rating }}</p>
+          <p><strong>releaseYear:</strong> {{ game.releaseYear}}</p> -->
+          <!-- <p><strong>Discount:</strong> {{ game.discount}} $ </p> -->
 
           <!-- <a [href]="game.trailer" target="_blank" class="btn btn-primary">Watch Trailer</a> -->
-        </div>
+        <!-- </div> -->
       </div>
     </div>
   </div>
