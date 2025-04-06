@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-game-detail',
@@ -7,5 +7,8 @@ import { Component } from '@angular/core';
   styleUrl: './game-detail.component.css'
 })
 export class GameDetailComponent {
-
+  @Input() gameName!:string;
+  @Input() gamePoster!:string;
+  @Input() gamePrice!:number;
+  @Input() gameCompany!:string;
 }
