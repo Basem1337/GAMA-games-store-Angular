@@ -1,27 +1,35 @@
+
 import { Component, OnInit } from '@angular/core';
-import {Game} from '../../Module/GameModule'
+import { Game } from '../../Module/GameModule';
 import { CommonModule } from '@angular/common';
 import { GameService } from '../../Services/products.service';
 import { ActivatedRoute } from '@angular/router';
+import { UsersService } from '../../Services/users.service';
+import { AuthService } from '../../Services/auth.services'; 
 
 @Component({
   selector: 'app-game-detail',
-  imports: [CommonModule],
+  standalone: true,
+  imports: [CommonModule],  
   templateUrl: './game-detail.component.html',
-  styleUrl: './game-detail.component.css'
+  styleUrls: ['./game-detail.component.css']
 })
 export class GameDetailComponent implements OnInit {
   game: Game | null = null;
   isLoading = true;
   error: string | null = null;
+  userId: string | null = null;
 
   constructor(
     private readonly route: ActivatedRoute,
-    private readonly gameService: GameService
+    private readonly gameService: GameService,
+    private readonly userService: UsersService,
+    private authService: AuthService
   ) { }
 
   ngOnInit(): void {
     console.log(this.game);
+    this.userId = this.authService.getUserIdFromToken();
     
     this.route.params.subscribe(params => {
       const gameId = params['id']; 
@@ -32,6 +40,7 @@ export class GameDetailComponent implements OnInit {
   loadGameDetails(gameId: number): void {
     this.isLoading = true;
     this.error = null;
+    
 
     this.gameService.getGameById(gameId).subscribe({
       next: (data) => {
@@ -50,22 +59,43 @@ export class GameDetailComponent implements OnInit {
     });
   }
 
-  addToWishlist(gameId: number): void {
-    // Implement wishlist functionality
-    // event?.stopPropagation(); // Prevent navigation when clicking wishlist button
+  addToCart(): void {
+    console.log("Cart");
+    
+    if (!this.userId || !this.game?.id) return;
+
+    this.userService.addToCart(this.userId, this.game.id).subscribe({
+      next: () => {
+        console.log('Added to cart!');
+      },
+      error: () => {
+        console.error('Failed to add to cart.');
+      }
+    });
   }
 
-  addToCart(gameId: number): void {
-    // Implement cart functionality
-    // event?.stopPropagation(); // Prevent navigation when clicking cart button
+  addToWishlist(): void {
+    console.log("wishlist");
+    if (!this.userId || !this.game?.id) return;
+
+    this.userService.addToWishlist(this.userId, this.game.id).subscribe({
+      next: () => {
+        console.log('Added to wishlist!');
+      },
+      error: () => {
+        console.error('Failed to add to wishlist.');
+      }
+    });
   }
 
-  openTrailer():void{
+  openTrailer(): void {
     if (this.game?.trailer) {
       const url = this.game.trailer.startsWith('http') ? this.game.trailer : `https://${this.game.trailer}`;
       window.open(url, '_blank');
+      console.log(url);
+      
     } else {
       console.error('Trailer URL is not available');
     }
-}
+  }
 }

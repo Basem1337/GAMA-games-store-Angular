@@ -2,10 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { GameService } from '../../Services/products.service';
 import { CommonModule } from '@angular/common';
 import { CategoriesService } from '../../Services/categories.service';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-products',
-  imports: [CommonModule],
+  imports: [CommonModule,RouterModule],
   templateUrl: './products.component.html',
   styleUrl: './products.component.css'
 })
@@ -26,6 +27,8 @@ export class ProductsComponent implements OnInit {
   ngOnInit(): void {
     this.loadGames();
     this.loadCategories();
+    console.log(this.games);
+    
   }
 
   loadGames(): void {
