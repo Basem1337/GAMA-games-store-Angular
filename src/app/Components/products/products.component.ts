@@ -45,7 +45,11 @@ export class ProductsComponent implements OnInit {
   }
 
   filterByCategory(categoryId: string): void {
-    this.selectedCategory = this.selectedCategory === categoryId ? null : categoryId;
+    if (categoryId === 'all') {
+      this.selectedCategory = null; // Reset category filter
+    } else {
+      this.selectedCategory = this.selectedCategory === categoryId ? null : categoryId;
+    }
     this.applyFilters();
   }
 
@@ -101,4 +105,6 @@ export class ProductsComponent implements OnInit {
       this.currentPage = page;
     }
   }
+
+
 }
