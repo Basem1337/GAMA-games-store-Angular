@@ -4,7 +4,7 @@
 <p class="m-0 font-[ClashGrotesk-Medium] leading-2  text-white text-2xl">Cart</p>
 
   <div class="bg-white w-[90%] h-auto min-h-[65%] overflow-auto flex flex-col gap-2 py-3">
-    <app-game-detail *ngFor="let game of cart" [gameName]="game.title" [gamePoster]="game.poster" [gamePrice]="game.price" [gameCompany]="game.company"></app-game-detail>
+    <app-game-detail *ngFor="let game of cart" [gameName]="game.gameName" [gamePoster]="game.gamePoster" [gamePrice]="game.price" [gameCompany]="game.company"></app-game-detail>
     <!-- <app-game-detail></app-game-detail>
     <app-game-detail></app-game-detail>
     <app-game-detail></app-game-detail> -->
