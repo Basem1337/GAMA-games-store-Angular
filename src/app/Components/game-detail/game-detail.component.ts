@@ -83,6 +83,7 @@ export class GameDetailComponent implements OnInit {
         console.log('Added to wishlist!');
       },
       error: () => {
+
         console.error('Failed to add to wishlist.');
       }
     });

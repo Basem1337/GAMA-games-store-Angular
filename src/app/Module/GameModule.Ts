@@ -3,7 +3,7 @@ export interface Game {
   gameName: string;
   gamePoster:string;
   company:string;
-  category:string;
+  category: { _id: string; name: string };
   description: string;
   price:number;
   originalPrice:number;
