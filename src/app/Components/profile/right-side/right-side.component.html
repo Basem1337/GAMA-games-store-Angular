@@ -6,17 +6,17 @@
     <p
     class="text-white font-[ClashGrotesk-Semibold] m-0 text-2xl leading-none whitespace-nowrap"
   >
-  Basemx1337  </p>
+  {{userName}}  </p>
   <p
     class="text-[#ffffff69] font-[ClashGrotesk-regular] m-0 text-lg leading-none whitespace-nowrap"
   >
-  example&#64;gmail.com </p>
+  {{email}} </p>
   </div>
   <div class="flex gap-3 py-5">
     <img src="images/Settings.svg" alt="Settings" class="w-5" />
     <p class="font-[ClashGrotesk-Medium] text-lg text-white m-0">Settings</p>
   </div>
-  <div class="flex gap-3 py-4">
+  <div (click)="signOut()" class="flex gap-3 py-4">
     <img src="images/LogOut.svg" alt="" class="w-5" >
     <p class="font-[ClashGrotesk-Medium] text-[#ffffff69] m-0">Sign out</p>
 
