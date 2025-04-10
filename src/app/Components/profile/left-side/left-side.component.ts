@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { GameCardComponent } from "../game-card/game-card.component";
 import { GameService } from '../../../Services/products.service';
 import { CommonModule } from '@angular/common';
+import { LibraryService } from '../../../Services/library.service';
+import { Game } from '../../../Models/LibraryItem';
 
 @Component({
   selector: 'app-left-side',
@@ -10,17 +12,26 @@ import { CommonModule } from '@angular/common';
   styleUrl: './left-side.component.css'
 })
 export class LeftSideComponent {
-  games: any[] = [];
+  games: Game[] = [];
+  errMsg: string = "";
   
-  constructor(private productService: GameService) {}
+  constructor(private libraryService: LibraryService) {}
 
   ngOnInit(): void {
-    this.loadGames();
+    this.libraryService.getLibrary().subscribe({
+      next:(res)=>{
+        this.games = res.games
+      },
+      error:(err)=>{
+        console.error(err);
+        this.errMsg = err.error;
+      }
+    })
   }
 
-  loadGames(): void {
-    this.productService.getAllGames().subscribe((data: any) => {
-      this.games = data;
-    });
-  }
+  // loadGames(): void {
+  //   this.productService.getAllGames().subscribe((data: any) => {
+  //     this.games = data;
+  //   });
+  // }
 }

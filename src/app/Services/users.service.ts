@@ -19,6 +19,16 @@ export class UsersService {
   login(user:any){
     return this.http.post(this.dbURL+"/users/login",user);
   }
+
+  getUser(){
+    const token = localStorage.getItem('token');
+    const headers = {
+      'Authorization': `Bearer ${token}`
+    };
+  
+    return this.http.get<{username:string,email:string}>(`${this.dbURL}/users/me`, { headers });
+  }
+
   addToCart(userId: string, gameId: string): Observable<any> {
     return this.http.post(`${this.dbURL}/${userId}/cart`, { gameId });
   }
