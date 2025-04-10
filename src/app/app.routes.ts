@@ -14,6 +14,7 @@ import { SuccessPageComponent } from './Components/success-page/success-page.com
 export const routes: Routes = [
     {path:'',component:LoginComponent},
     {path:'home',component:LandingPageComponent},
+    { path: 'products', component: ProductsComponent },
     {path:'login',component:LoginComponent},
     {path:'signup',component:SignupComponent},
     {path:'about',component:AboutPageComponent},
