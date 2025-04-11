@@ -8,7 +8,9 @@
             <a href="" class="text-[#3A66E8] font-[ClashGrotesk-Medium]">See More</a>
         </div>
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-            <div *ngFor="let game of games | slice:5:9" class="bg-white w-full h-[360px] relative shadow-lg overflow-hidden">
+          
+          <div *ngFor="let game of games | slice:5:9" class="bg-white w-full h-[360px] relative shadow-lg overflow-hidden">
+              <a [routerLink]="['/games', game._id]" class="w-full text-decoration-none"> 
                 <div class="absolute bottom-0 w-full text-white transition-all duration-300 hover:bg-opacity-80 z-10">
                     <div class="flex justify-between items-center h-[100px] w-full bg-[#1C2027] p-3 font-[ClashGrotesk-Medium] m-0">
                         <div class="flex flex-col">
@@ -19,6 +21,7 @@
                     </div>
                 </div>
                 <img class="absolute top-0 left-0 w-full h-full object-cover" src="{{game.gamePoster}}" alt="">
+              </a>
             </div>
         </div>
     </div>

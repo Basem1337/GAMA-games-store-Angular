@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 import { GameService } from '../../../Services/products.service';
 import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-sales',
-  imports: [CommonModule],
+  imports: [CommonModule,RouterModule],
   templateUrl: './sales.component.html',
   styleUrl: './sales.component.css'
 })
