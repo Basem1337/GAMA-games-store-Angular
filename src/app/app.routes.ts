@@ -12,9 +12,9 @@ import { ProcessingPageComponent } from './Components/processing-page/processing
 import { SuccessPageComponent } from './Components/success-page/success-page.component';
 
 export const routes: Routes = [
-    {path:'',component:LoginComponent},
+    {path:'',component:LandingPageComponent},
     {path:'home',component:LandingPageComponent},
-    { path: 'products', component: ProductsComponent },
+    {path:'products', component: ProductsComponent },
     {path:'login',component:LoginComponent},
     {path:'signup',component:SignupComponent},
     {path:'about',component:AboutPageComponent},

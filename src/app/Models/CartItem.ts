@@ -14,7 +14,7 @@ export interface CartItem {
     __v: number;
   }
   
-  interface UserItems {
+export interface UserItems {
     _id: string;
     user: string;
     items: CartItem[];

@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
 
 export interface Game {
   id: string;
+  _id: string;
   gameName: string;
   gamePoster:string;
   company:string;

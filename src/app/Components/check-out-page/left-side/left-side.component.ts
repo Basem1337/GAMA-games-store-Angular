@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { CheckoutService } from '../../../Services/checkout.service';
 
 @Component({
   selector: 'app-left-side',
@@ -9,4 +10,18 @@ import { RouterModule } from '@angular/router';
 })
 export class LeftSideComponent {
 
+  constructor(private checkoutService:CheckoutService) {
+    
+  }
+
+  checkout(){
+    this.checkoutService.checkout().subscribe({
+      next:(res)=>{
+
+      },
+      error:(res)=>{
+
+      },
+    })
+  }
 }

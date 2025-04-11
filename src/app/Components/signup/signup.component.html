@@ -8,12 +8,18 @@
                 @if(!unValid){
                     <span class="text-red-800">That's not a valid Username</span>
                 }
+                @if(myForm.controls['username'].touched){
+                    <span class="text-red-800">Username is Required</span>
+                }
             </div>
             <div class="flex flex-col">
                 <label for="em">Email</label>
                 <input #email formControlName="email" class="border-2 border-[#5267A2] p-2 w-full" type="email" name="email" id="em" placeholder="example@mail.com">
                 @if(!emValid){
                     <span class="text-red-800">That's not a valid E-mail</span>
+                }
+                @if(myForm.controls['email'].touched){
+                    <span class="text-red-800">Email is Required</span>
                 }
             </div>
             <div class="flex flex-col">
@@ -24,6 +30,9 @@
                 </div>
                 @if(!passValid){
                     <span class="text-red-800">Password must be more than 8 character</span>
+                }
+                @if(myForm.controls['password'].touched){
+                    <span class="text-red-800">Password is Required</span>
                 }
             </div>
             <div>
@@ -42,6 +51,11 @@
                     <span class="text-red-800">You must choose gender.</span>
                 }
             </div>
+            @if(errMsg){
+                <div>
+                    <span class="text-red-800">{{errMsg}}</span>
+                </div>
+            }
             <button (click)="Add(username.value,password.value,email.value,gender.value)"
             class="p-3 bg-[#2F52BD] text-white w-full md:w-3/5">
             <h6 class="font-[ClashGrotesk-SemiBold] m-0">Register</h6>

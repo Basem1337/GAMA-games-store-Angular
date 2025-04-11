@@ -1,6 +1,6 @@
 <div class="flex h-[80px] bg-[#1C232F] px-5 md:px-10">
     <div class="flex justify-between items-center w-full">
-        <div>
+        <div [routerLink]="['/home']" class="cursor-pointer">
             <img src="images/h-logo.svg" alt="Logo" width="120px">
         </div>
 
@@ -9,7 +9,7 @@
             <a class="nav-links hover:text-[#3A66E8] transition" routerLink="/games" href="#">Games</a>
             <a class="nav-links hover:text-[#3A66E8] transition" routerLink="/home" href="#" fragment="categories">Categories</a>
             <a class="nav-links hover:text-[#3A66E8] transition" routerLink="/about" href="#">About</a>
-            <a class="nav-links hover:text-[#3A66E8] transition" routerLink="/cart" href="#">Cart</a>
+            <!-- <a class="nav-links hover:text-[#3A66E8] transition" routerLink="/cart" href="#">Cart</a> -->
         </div>
 
         <div class="hidden md:flex gap-3 font-[ClashGrotesk-Medium]">

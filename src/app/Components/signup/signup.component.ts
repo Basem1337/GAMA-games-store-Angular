@@ -12,6 +12,7 @@ import { Router } from '@angular/router';
   styleUrl: './signup.component.css'
 })
 export class SignupComponent {
+
   myForm = new FormGroup({
     username: new FormControl(null,[Validators.pattern('^[A-Za-z]+[0-9]*$')]),
     password: new FormControl(null,[Validators.minLength(8)]),
@@ -37,6 +38,8 @@ export class SignupComponent {
 
   constructor(private userService: UsersService, private router:Router){}
 
+  errMsg:string = "";
+
   Add(username:string,password:string,email:string,gender:string){
     let user = {
       username:username,
@@ -50,13 +53,31 @@ export class SignupComponent {
       return;
     }
 
+    if (!this.unValid) {
+      this.myForm.controls['username'].markAsTouched();
+      return;
+    }
+
+    if (!this.emValid) {
+      this.myForm.controls['email'].markAsTouched();
+      return;
+    }
+
+    if (!this.passValid) {
+      this.myForm.controls['password'].markAsTouched();
+      return;
+    }
+
     if(this.myForm.valid && this.myForm.controls['username'].value && this.myForm.controls['password'].value && this.myForm.controls['email'].value && this.myForm.controls['gender'].value){
       this.userService.register(user).subscribe({
         next:res=>{
           console.log(res)
           this.router.navigate(['/login']);
         },
-        error:res=>console.log(res.error)
+        error:(res)=>{
+          console.log(res.error)
+          this.errMsg = res.error
+        }
       });
     }
 
