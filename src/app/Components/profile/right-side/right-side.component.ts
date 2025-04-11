@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
-import { Route, Router } from '@angular/router';
+import { Route, Router, RouterModule } from '@angular/router';
 import { UsersService } from '../../../Services/users.service';
 
 @Component({
   selector: 'app-right-side',
-  imports: [],
+  imports: [RouterModule],
   templateUrl: './right-side.component.html',
   styleUrl: './right-side.component.css'
 })
@@ -30,8 +30,16 @@ export class RightSideComponent {
   }
 
   signOut(){
-    localStorage.removeItem("token")
-    this.router.navigate(["/home"])
-    window.location.reload();
+    localStorage.removeItem("token");
+
+    this.router.navigate(['/home']).then(() => {
+      // Option 1: Simulate reload by forcing Angular to re-initialize
+      // You can navigate to dummy route and back OR use a reload logic like:
+      this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+        this.router.navigate(['/home']);
+      });
+  
+      location.reload();
+    });
   }
 }

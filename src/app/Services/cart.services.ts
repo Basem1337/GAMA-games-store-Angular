@@ -44,4 +44,17 @@ export class CartService {
 
     return this.http.post(`${this.apiUrl}/cart`, body, { headers });
   }
+
+  removeItemFromCart(productId:string){
+    const token = localStorage.getItem('token'); 
+
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}` 
+    });
+
+    const body = { productId };
+
+    return this.http.patch<{items:CartItem[]}>(`${this.apiUrl}/cart`, body, { headers });
+  }
 }

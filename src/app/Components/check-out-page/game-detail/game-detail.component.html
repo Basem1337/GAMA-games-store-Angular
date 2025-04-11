@@ -11,7 +11,7 @@
       <p class="mt-2 font-[ClashGrotesk-Medium]">${{gamePrice}}</p>
     </div>
   </div>
-  <div class="w-[50px]  flex-col">
+  <div (click)="deleteCartItem(productId)" class="w-[50px]  flex-col">
     <img src="images/Delete2.svg" alt="" class="w-[20px] justify-self-center pt-2 cursor-pointer hover:scale-105" />
   </div>
 </div>

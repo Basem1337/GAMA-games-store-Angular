@@ -3,14 +3,15 @@ import { Component, OnInit } from '@angular/core';
 import { Game } from '../../Module/GameModule';
 import { CommonModule } from '@angular/common';
 import { GameService } from '../../Services/products.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterModule } from '@angular/router';
 import { UsersService } from '../../Services/users.service';
 import { AuthService } from '../../Services/auth.services'; 
+import { CartService } from '../../Services/cart.services';
 
 @Component({
   selector: 'app-game-detail',
   standalone: true,
-  imports: [CommonModule],  
+  imports: [CommonModule, RouterModule],  
   templateUrl: './game-detail.component.html',
   styleUrls: ['./game-detail.component.css']
 })
@@ -18,13 +19,16 @@ export class GameDetailComponent implements OnInit {
   game: Game | null = null;
   isLoading = true;
   error: string | null = null;
+  popUpMsg: string | null = null;
   userId: string | null = null;
+  popUpType:"success" | "fail" = "fail";
 
   constructor(
     private readonly route: ActivatedRoute,
     private readonly gameService: GameService,
     private readonly userService: UsersService,
-    private authService: AuthService
+    private authService: AuthService,
+    private cartService: CartService
   ) { }
 
   ngOnInit(): void {
@@ -59,19 +63,35 @@ export class GameDetailComponent implements OnInit {
     });
   }
 
-  addToCart(): void {
-    console.log("Cart");
+  // addToCart(): void {
+  //   console.log("Cart");
     
-    if (!this.userId || !this.game?.id) return;
+  //   if (!this.userId || !this.game?.id) return;
 
-    this.userService.addToCart(this.userId, this.game.id).subscribe({
-      next: () => {
-        console.log('Added to cart!');
+  //   this.userService.addToCart(this.userId, this.game.id).subscribe({
+  //     next: () => {
+  //       console.log('Added to cart!');
+  //     },
+  //     error: () => {
+  //       console.error('Failed to add to cart.');
+  //     }
+  //   });
+  // }
+
+  addToCart(productId:string){
+    if (this.game) {
+      console.log(this.game);
+    }
+    this.cartService.addToCart(productId).subscribe({
+      next:(res)=>{
+        this.popUpType = "success"
+        this.popUpMsg = `${this.game?.gameName} has been added to your cart successfully`
       },
-      error: () => {
-        console.error('Failed to add to cart.');
+      error:(res)=>{
+        this.popUpMsg = res.error
+
       }
-    });
+    })
   }
 
   addToWishlist(): void {

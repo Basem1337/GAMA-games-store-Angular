@@ -22,6 +22,7 @@ export class RightSideComponent implements OnInit {
       next:(res)=>{
         console.log(res.items);
         this.cart = res.items
+        this.calculateTotals()
       },
       error:(res)=>{
 
@@ -29,13 +30,19 @@ export class RightSideComponent implements OnInit {
     })
   }
 
+  onRemoveEvent(newCart:CartItem[]){
+    this.cart = newCart
+    this.calculateTotals()
+  }
+
   calculateTotals(): void {
     let total = 0;
     let discount = 0;
 
     this.cart.forEach(item => {
-      const itemTotal = item.price; 
-      const itemDiscount = itemTotal * item.discount;
+      const itemTotal = item.originalPrice; 
+      // const itemDiscount = itemTotal * item.discount/100;
+      const itemDiscount = item.originalPrice - item.price;
       total += itemTotal;
       discount += itemDiscount;
     });
@@ -45,5 +52,8 @@ export class RightSideComponent implements OnInit {
       totalDiscount: discount,
       finalTotal: total - discount,
     };
+
+    console.log(this.totals);
+    
   }
 }
