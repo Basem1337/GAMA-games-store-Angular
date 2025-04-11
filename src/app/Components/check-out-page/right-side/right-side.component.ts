@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { GameDetailComponent } from '../game-detail/game-detail.component';
 import { CommonModule } from '@angular/common';
-import { CartItem, CartService } from '../../../Services/cart.services';
+import { CartService } from '../../../Services/cart.services';
+import { CartItem } from '../../../Models/CartItem';
 
 @Component({
   selector: 'app-right-side',
@@ -17,11 +18,15 @@ export class RightSideComponent implements OnInit {
   constructor(private cartService: CartService) {}
 
   ngOnInit(): void {
-    this.cartService.cart$.subscribe((items) => {
-      this.cart = items;
-      this.calculateTotals();
-      console.log(items);
-    });
+    this.cartService.getCart().subscribe({
+      next:(res)=>{
+        console.log(res.items);
+        this.cart = res.items
+      },
+      error:(res)=>{
+
+      }
+    })
   }
 
   calculateTotals(): void {
@@ -40,13 +45,5 @@ export class RightSideComponent implements OnInit {
       totalDiscount: discount,
       finalTotal: total - discount,
     };
-  }
-
-  removeItem(id: string): void {
-    this.cartService.removeItemFromCart(id).subscribe();
-  }
-
-  clearCart(): void {
-    this.cartService.clearCart();
   }
 }
